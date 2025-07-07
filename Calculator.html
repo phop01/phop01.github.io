@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <title>Calculator - เครื่องคิดเลข</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body {
+      background: linear-gradient(135deg, #ffffff 0%, #a8e025 100%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    
+    .calculator {
+      background-color: #1e1e1e;
+      padding: 20px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+      width: 320px;
+      max-width: 90vw;
+      border: 1px solid #333;
+    }
+    
+    .display {
+      width: 100%;
+      height: 60px;
+      border-radius: 12px;
+      border: none;
+      margin-bottom: 15px;
+      font-size: 24px;
+      font-weight: 300;
+      padding: 0 15px;
+      text-align: right;
+      background-color: #0a0a0a;
+      color: #ffffff;
+      box-sizing: border-box;
+      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+    
+    .display:focus {
+      outline: none;
+    }
+    
+    .buttons {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+    
+    button {
+      height: 60px;
+      font-size: 20px;
+      font-weight: 500;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      user-select: none;
+    }
+    
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    }
+    
+    button:active {
+      transform: translateY(0);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+    
+    .btn-function {
+      background: linear-gradient(135deg, #a8a8a8, #8a8a8a);
+      color: #000;
+      font-weight: 600;
+    }
+    
+    .btn-function:hover {
+      background: linear-gradient(135deg, #b8b8b8, #9a9a9a);
+    }
+    
+    .btn-number {
+      background: linear-gradient(135deg, #4a4a4a, #2a2a2a);
+      color: #fff;
+    }
+    
+    .btn-number:hover {
+      background: linear-gradient(135deg, #5a5a5a, #3a3a3a);
+    }
+    
+    .btn-operator {
+      background: linear-gradient(135deg, #ff9500, #e6850e);
+      color: #fff;
+      font-weight: 600;
+    }
+    
+    .btn-operator:hover {
+      background: linear-gradient(135deg, #ffad33, #ff9500);
+    }
+    
+    .btn-long {
+      grid-column: span 2;
+    }
+    
+    /* Responsive design */
+    @media (max-width: 360px) {
+      .calculator {
+        width: 280px;
+        padding: 15px;
+      }
+      
+      button {
+        height: 50px;
+        font-size: 18px;
+      }
+      
+      .display {
+        height: 50px;
+        font-size: 20px;
+      }
+      
+      .buttons {
+        gap: 8px;
+      }
+    }
+    
+    /* Animation for error state */
+    .error {
+      animation: shake 0.5s;
+      background-color: #ff4444 !important;
+    }
+    
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-5px); }
+      75% { transform: translateX(5px); }
+    }
+  </style>
+</head>
+<body>
+  <div class="calculator">
+    <input type="text" id="display" class="display" readonly placeholder="0" />
+    <div class="buttons">
+      <!-- Row 1 -->
+      <button class="btn-function" onclick="clearDisplay()">C</button>
+      <button class="btn-function" onclick="backspace()">⌫</button>
+      <button class="btn-function" onclick="append('%')">%</button>
+      <button class="btn-operator" onclick="append('/')">÷</button>
+      
+      <!-- Row 2 -->
+      <button class="btn-number" onclick="append('7')">7</button>
+      <button class="btn-number" onclick="append('8')">8</button>
+      <button class="btn-number" onclick="append('9')">9</button>
+      <button class="btn-operator" onclick="append('*')">×</button>
+      
+      <!-- Row 3 -->
+      <button class="btn-number" onclick="append('4')">4</button>
+      <button class="btn-number" onclick="append('5')">5</button>
+      <button class="btn-number" onclick="append('6')">6</button>
+      <button class="btn-operator" onclick="append('-')">−</button>
+      
+      <!-- Row 4 -->
+      <button class="btn-number" onclick="append('1')">1</button>
+      <button class="btn-number" onclick="append('2')">2</button>
+      <button class="btn-number" onclick="append('3')">3</button>
+      <button class="btn-operator" onclick="append('+')">+</button>
+      
+      <!-- Row 5 -->
+      <button class="btn-number btn-long" onclick="append('0')">0</button>
+      <button class="btn-number" onclick="append('.')">.</button>
+      <button class="btn-operator" onclick="calculate()">=</button>
+    </div>
+  </div>
+  
+  <!-- เชื่อมต่อไฟล์ JavaScript ภายนอก -->
+  <script src="script.js"></script>
+</body>
+</html>
